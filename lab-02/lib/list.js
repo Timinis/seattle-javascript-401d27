@@ -38,8 +38,10 @@ class List {
     return newList;
   }
 
+  //should refactor to look cleaner; aka abstract
   slice(startingPoint, endPoint) {
     let newList = new List();
+
     if (endPoint == undefined) {
       for (let i = startingPoint; i < this.length; i++) {
         newList.push(this[i]);
@@ -52,7 +54,7 @@ class List {
     }
     return newList;
   }
-
+  //should refactor to look cleaner; aka abstract
   reduce(callback, initVal) {
     let startPoint;
     let accumulatedVal;
