@@ -5,9 +5,7 @@
 const helloModule = require('../../lib/greet.js');
 
 describe('Testing the helloModule', () => {
-
   it(`should say "hello" + " string" when function is invoked`, () => {
-
     expect(helloModule('world')).toBe('Hello world');
   });
   it(`should say null when function is invoked with failing parameters`, () => {
@@ -17,3 +15,5 @@ describe('Testing the helloModule', () => {
     expect(helloModule(12)).toBe(null);
   });
 });
+
+//added some hotfixes
