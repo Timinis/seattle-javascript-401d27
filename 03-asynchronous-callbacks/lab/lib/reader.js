@@ -37,4 +37,4 @@ let readFileHelper = (err, data) => {
 
 useForEachCallBack(file);
 
-module.exports(useForEachCallBack);
+module.exports = useForEachCallBack;
