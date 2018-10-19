@@ -4,8 +4,7 @@ const fs = require('fs');
 
 const buffer = fs.readFileSync(`${__dirname}/baldy.bmp`);
 
-
-const parsedBitmap  = {};
+const parsedBitmap = {};
 // type
 parsedBitmap.type = buffer.toString('utf-8', 0, 2);
 // fileSize
@@ -17,4 +16,11 @@ parsedBitmap.height = buffer.readInt32LE(22);
 // Width
 parsedBitmap.width = buffer.readInt32LE(18);
 
+parsedBitmap.header = buffer.readInt32LE(14);
+
+parsedBitmap.colorDepth = buffer.readInt16LE(28);
+
 parsedBitmap;
+
+console.log(parsedBitmap.colorDepth);
+console.log(parsedBitmap.header);

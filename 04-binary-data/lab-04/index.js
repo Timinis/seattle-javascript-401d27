@@ -1,8 +1,5 @@
 'use strict';
 
-console.log('inside the filez');
-console.log(process.argv);
-
 const fs = require('fs');
 
 class Bitmap {
@@ -25,7 +22,12 @@ class Bitmap {
 }
 
 const transformGreyscale = bmp => {
-  console.log('Transforming bitmap into greyscale.', bmp);
+  for (let i = 122; i < 1146; i += 4) {
+    let avg = (bmp.buffer[i] + bmp.buffer[i + 1] + bmp.buffer[i + 2]) / 3;
+    bmp.buffer[i] = avg;
+    bmp.buffer[i + 1] = avg;
+    bmp.buffer[i + 2] = avg;
+  }
 };
 
 //an object containing different methods for transformation
@@ -39,13 +41,12 @@ function readFileAndTransform() {
     if (err) throw err;
 
     baldy.parse(buffer);
-
+    console.log(buffer);
     //callback still needs to be created, refer back to transformDictionary
     baldy.transform(callback);
 
     fs.writeFile(baldy.newFile, baldy.buffer, (err, out) => {
       if (err) throw err;
-      console.log(`Bitmap Transformed: ${baldy.newFile}`);
     });
   });
 }
