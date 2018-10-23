@@ -21,20 +21,8 @@ class Bitmap {
   }
 }
 
-const transformGreyscale = bmp => {
-  for (let i = 122; i < 1146; i += 4) {
-    let avg = (bmp.buffer[i] + bmp.buffer[i + 1] + bmp.buffer[i + 2]) / 3;
-    bmp.buffer[i] = avg;
-    bmp.buffer[i + 1] = avg;
-    bmp.buffer[i + 2] = avg;
-  }
-};
-
 //an object containing different methods for transformation
-const transformDictionary = {
-  //TODO: Make a greyscale transformation function in the future
-  greyscale: transformGreyscale
-};
+const transformDictionary = require('./library/transform.js');
 
 function readFileAndTransform() {
   fs.readFile(file, (err, buffer) => {
@@ -56,3 +44,5 @@ const [file, callback] = process.argv.slice(2);
 let baldy = new Bitmap(file);
 
 readFileAndTransform();
+
+module.exports = Bitmap;
