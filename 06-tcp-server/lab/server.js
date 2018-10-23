@@ -24,7 +24,7 @@ const ee = new EE();
 
 const userPool = [];
 
-//setting up an connection event
+//setting up an connection event and adding string slicing
 
 server.on('connection', socket => {
   const user = new User(socket);
