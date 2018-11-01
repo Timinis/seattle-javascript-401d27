@@ -8,4 +8,4 @@ This lab is an extension of lab 8
 
 ## 3. To test API method, use postman and do an /api request on POST. then the server sends a response with an string containing the text in JSON format. POST is used to add cats
 
-## For today we added the middleware for handling error
+## Tried to integrate Mongodb didn't work out as well as intended
