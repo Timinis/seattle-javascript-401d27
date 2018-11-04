@@ -16,6 +16,7 @@ let sendJSON = (res, data) => {
 
 router.get('/api/v1/cats', (req, res) => {
   Cats.find(function(err, cats) {
+    console.log(`im linked`);
     if (err) return console.error(err);
     console.log(cats);
   });
