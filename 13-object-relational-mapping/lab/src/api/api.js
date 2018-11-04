@@ -6,6 +6,10 @@ const serverError = require('../error/error.js');
 
 import Cats from '../constructors/cats.js';
 
+const models = {
+  cats: Cats
+};
+
 let sendJSON = (res, data) => {
   res.statusCode = 200;
   res.statusMessage = 'OK';
@@ -14,37 +18,42 @@ let sendJSON = (res, data) => {
   res.end();
 };
 
-router.get('/api/v1/cats', (req, res) => {
-  Cats.find(function(err, cats) {
-    console.log(`im linked`);
-    if (err) return console.error(err);
-    console.log(cats);
-  });
+router.get('/api/v1/:model', (req, res, next) => {
+  const model = models[req.params.model];
+  if (!model) {
+    serverError('model not found', req, res, next);
+    return;
+  }
+  model
+    .find({})
+    .then(data => sendJSON(res, data))
+    .catch(next);
 });
 
-// router.get('/api/v1/cats/:id', (req, res) => {
-//   if (req.params.id) {
-//     Cats.findOne(req.params.id)
-//       .then(data => sendJSON(res, data))
-//       .catch(err => serverError(res, err));
-//   }
-// });
+router.get('/api/v1/:model/:id', (req, res, next) => {
+  const model = models[req.params.model];
+  model
+    .findOne({ _id: req.params.id })
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
 
-router.post('/api/v1/cats', (req, res) => {
-  let record = new Cats(req.body);
+router.post('/api/v1/:model', (req, res, next) => {
+  const model = models[req.params.model];
+  let record = new model(req.body);
   record
     .save()
     .then(data => sendJSON(res, data))
-    .catch(console.error);
+    .catch(next);
 });
 
-router.delete('/api/v1/cats/:id', (req, res) => {
-  if (req.params.id) {
-    Cats.deleteOne(req.params.id).then(success => {
-      let data = { id: req.params.id, deleted: success };
-      sendJSON(res, data);
-    });
-  }
-});
+// router.delete('/api/v1/cats/:id', (req, res) => {
+//   if (req.params.id) {
+//     Cats.deleteOne(req.params.id).then(success => {
+//       let data = { id: req.params.id, deleted: success };
+//       sendJSON(res, data);
+//     });
+//   }
+// });
 
 export default router;
