@@ -4,12 +4,15 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
 const catSchema = new mongoose.Schema({
-  id: String,
-  name: String,
-  weight: Number
+  name: { type: String, required: true },
+  species: { type: String, required: true },
+  shelter: { type: mongoose.Schema.Types.ObjectId, ref: 'shelter' }
 });
 
-const Cats = mongoose.model('Cat', catSchema);
+catSchema.pre('findOne', function(next) {
+  this.populate('shelter');
+  next();
+});
 
 // class Cats {
 //   constructor(config) {
@@ -34,4 +37,4 @@ const Cats = mongoose.model('Cat', catSchema);
 //   }
 // }
 
-export default Cats;
+export default mongoose.model('cats', catSchema);
