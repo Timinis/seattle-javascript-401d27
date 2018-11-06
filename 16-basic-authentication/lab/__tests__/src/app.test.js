@@ -9,12 +9,9 @@ beforeEach(async () => {
   // clean up as needed
 });
 
-describe('app', () => {
+process.env.APP_SECRET = 'snapseruptatpurespans';
 
-  it('should ping pong', async () => {
-    const response = await mockRequest.get('/ping');
-    expect(response.text).toBe('pong');
-  });
+describe('app', () => {
 
   it('should sign up with good creds', async () => {
     const userInfo = {username:'foo',email:'foo@bar.com',password:'foobar'};
@@ -33,8 +30,14 @@ describe('app', () => {
   });
 
   it('should sign in', async () => {
-    const response = await mockRequest.get('/signin');
-    expect(response.text).toBe('token coming soon');
+    
+    const userInfo = {username:'foo',email:'foo@bar.com', password: 'foobar'};
+
+    await mockRequest.post('/signup').send(userInfo);
+
+    const response = await mockRequest.get('/signin').auth('foo', 'foobar');
+
+    expect(response.text.split('.').length).toBe(3);
   });
 
 
