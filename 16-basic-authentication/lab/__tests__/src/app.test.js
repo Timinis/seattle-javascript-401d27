@@ -9,8 +9,8 @@ beforeEach(async () => {
   // clean up as needed
 });
 
-xdescribe('app', () => {
-  it('should ping pong', async () => {
+describe('app', () => {
+  xit('should ping pong', async () => {
     const response = await mockRequest.get('/ping');
     expect(response.text).toBe('pong');
   });
@@ -21,11 +21,13 @@ xdescribe('app', () => {
       email: 'foo@bar.com',
       password: 'foobar'
     };
-    const response = await mockRequest.post('/signup').send(userInfo);
+
+    const response = await mockRequest.post('/api/signup').send(userInfo);
+    console.log(response.text, 'this is response');
     expect(response.text.split('.').length).toBe(3);
   });
 
-  it('should sign fail with bad creds', async () => {
+  xit('should sign fail with bad creds', async () => {
     const userInfo = { username: 'foo', email: 'foo@bar.com' };
 
     const response = await mockRequest.post('/signup').send(userInfo);
@@ -33,7 +35,7 @@ xdescribe('app', () => {
     expect(response.status).toBe(400);
   });
 
-  it('should sign in', async () => {
+  xit('should sign in', async () => {
     const response = await mockRequest.get('/signin');
     expect(response.text).toBe('token coming soon');
   });
