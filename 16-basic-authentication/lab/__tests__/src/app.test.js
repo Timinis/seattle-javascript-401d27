@@ -9,11 +9,17 @@ beforeEach(async () => {
   // clean up as needed
 });
 
+<<<<<<< HEAD
 describe('app', () => {
   xit('should ping pong', async () => {
     const response = await mockRequest.get('/ping');
     expect(response.text).toBe('pong');
   });
+=======
+process.env.APP_SECRET = 'snapseruptatpurespans';
+
+describe('app', () => {
+>>>>>>> e6d3e4af2395879684d301dc28fdf40125475ee6
 
   it('should sign up with good creds', async () => {
     const userInfo = {
@@ -35,8 +41,20 @@ describe('app', () => {
     expect(response.status).toBe(400);
   });
 
+<<<<<<< HEAD
   xit('should sign in', async () => {
     const response = await mockRequest.get('/signin');
     expect(response.text).toBe('token coming soon');
+=======
+  it('should sign in', async () => {
+    
+    const userInfo = {username:'foo',email:'foo@bar.com', password: 'foobar'};
+
+    await mockRequest.post('/signup').send(userInfo);
+
+    const response = await mockRequest.get('/signin').auth('foo', 'foobar');
+
+    expect(response.text.split('.').length).toBe(3);
+>>>>>>> e6d3e4af2395879684d301dc28fdf40125475ee6
   });
 });
