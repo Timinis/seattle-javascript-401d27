@@ -9,17 +9,11 @@ beforeEach(async () => {
   // clean up as needed
 });
 
-<<<<<<< HEAD
 describe('app', () => {
   xit('should ping pong', async () => {
     const response = await mockRequest.get('/ping');
     expect(response.text).toBe('pong');
   });
-=======
-process.env.APP_SECRET = 'snapseruptatpurespans';
-
-describe('app', () => {
->>>>>>> e6d3e4af2395879684d301dc28fdf40125475ee6
 
   it('should sign up with good creds', async () => {
     const userInfo = {

@@ -8,7 +8,6 @@ const schema = new Schema({
   password: { type: String, required: true }
 });
 
-<<<<<<< HEAD
 schema.pre('save', function(next) {
   bcrypt
     .hash(this.password, 10)
@@ -19,10 +18,6 @@ schema.pre('save', function(next) {
     .catch(error => {
       throw error;
     });
-=======
-schema.pre('save', async function() {
-  this.password = await bcrypt.huh('what to do');
->>>>>>> e6d3e4af2395879684d301dc28fdf40125475ee6
 });
 
 // Generate a JWT from the user id and a secret
