@@ -18,7 +18,7 @@ function createUser(
   return User.create({ username, email, password });
 }
 
-describe('User Model', () => {
+xdescribe('User Model', () => {
   it('should create', async () => {
     const user = await createUser();
 
