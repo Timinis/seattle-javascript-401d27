@@ -8,9 +8,8 @@ const schema = new Schema({
   password: {type: String, required: true},
 });
 
-schema.pre('save', async function(next) {
+schema.pre('save', async function() {
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 // Generate a JWT from the user id and a secret
