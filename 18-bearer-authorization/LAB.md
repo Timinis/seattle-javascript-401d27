@@ -1,18 +1,21 @@
-![CF](http://i.imgur.com/7v5ASc8.png) 17: Debugging
+![CF](http://i.imgur.com/7v5ASc8.png) 18: Bearer Authorization
 ===
 
 ## Submission Instructions
   * Submit link to Heroku deployment
-  * Submit screenshot of VS Code Node debugger in action on (or reasonably near) a buggy line of code. Put screenshot at root of your project repo with a descriptive name.
+
 
 ## Learning Objectives  
-* Refresh ability to deploy a project to Heroku
-* Use Node debugger in VS Code
+* Integrate new 3rd party code into new version existing project.
 
 
 ## Feature Tasks
-* Starter code has a few bugs. Use the integrated Node debugger to root them out.
-* NOTE: you do NOT need to fix the bugs, though you can of course.
+* Add authentication/authorization functionality to a CRUD api. Can use previous project as starting point.
+* The new `auth` folder is supplied as is. It may work with modification, but tweak it as needed. It's yours now.
+	* You are free to tweak middleware to get basic sign up/in functionality in place. What is the simplest thing you could do for auth middleware to allow any user through?   
+*  Stretch: protect your resource routes based on user's role.
 
 ## Tests
-* Stretch - Use the included tests (and any you create) to verify fixed code
+* Pass sign up and sign in tests
+* Stretch - test protected resource routes
+* Stretch - Add validation tests
