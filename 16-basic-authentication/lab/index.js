@@ -6,10 +6,6 @@
 'use strict';
 
 require('dotenv').config();
-<<<<<<< HEAD
-=======
-
->>>>>>> e6d3e4af2395879684d301dc28fdf40125475ee6
 require('babel-polyfill');
 require('babel-register');
 

@@ -14,14 +14,14 @@ app.use(error);
 
 let server;
 
-module.exports =  {
+module.exports = {
   app,
-  start: (port) => {
+  start: port => {
     server = app.listen(port, () => console.log('Listening on port ' + port));
   },
   stop: () => {
-    server.close( () => {
+    server.close(() => {
       console.log('Server has been stopped');
     });
-  },
+  }
 };
